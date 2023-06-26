@@ -4,6 +4,7 @@ import "./App.css";
 export default function App() {
   return (
     <div className="App">
+      <div className="container">
       <h1>Weather App</h1>
       <footer>
         THIS PROJECT WAS CODED BY DESIRÉE G AND IS
@@ -12,6 +13,7 @@ export default function App() {
           OPEN-SOURCED{" "}
         </a>
       </footer>
+    </div>
     </div>
   );
 }
