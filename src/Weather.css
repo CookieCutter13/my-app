@@ -1,0 +1,11 @@
+.Weather {
+  border: 1px solid #dadde1;
+}
+.Weather h2 {
+  color: #878787;
+  color: rgb(135,135,135);
+  display:block;
+  font-size:24px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 29px;
+}
