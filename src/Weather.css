@@ -1,9 +1,9 @@
 .Weather {
   border: 1px solid #dadde1;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgb(135,135,135);
+  color: rgb(135, 135, 135);
   padding: 16px;
- 
+
   margin: 30px auto;
 }
 .Weather form {
@@ -12,14 +12,14 @@
 
 .Weather h2 {
   color: #878787;
-  color: rgb(135,135,135);
-  display:block;
-  font-size:24px;
+  color: rgb(135, 135, 135);
+  display: block;
+  font-size: 24px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 29px;
   font-weight: 100;
 }
 strong {
   font-size: 33px;
-  margin-left: 15px ;
+  margin-left: 15px;
 }
