@@ -59,12 +59,9 @@ export default function Weather(props) {
             </div>
           </div>
         </form>
-<h2>{weatherData.city}</h2>
-<ul>
-  <li>
-    <FormattedDate date= {weatherData.date}
-  </li>
-</ul>
+        <h2>{weatherData.city}</h2>
+
+        <FormattedDate date={props.data.date} />
         <WeatherInfo data={weatherData} />
         <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
