@@ -2,6 +2,10 @@ import React from "react";
 import "./Weather.css";
 
 export default function Weather() {
+  const apiKey = "27o0abe982dat860dde4ff04f45c83ea";
+  let city = "New York"
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}}&units=imperial`;
+  axios.get(apiUrl).then(handleResponse);
   return (
     <div className="Weather">
       <form>
@@ -23,7 +27,8 @@ export default function Weather() {
           </div>
         </div>
       </form>
-      <h2>New York</h2>
+
+      <h2>New York </h2>
       <ul>
         <li>Wednesday 7</li>
         <li>mostly stupid</li>{" "}
