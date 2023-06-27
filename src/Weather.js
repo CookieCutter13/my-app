@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({});
+  const [city, setCity] = useState(props.defaultcity);
+
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
       ready: true,
+      coordinates: response.data.coords,
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
@@ -15,10 +21,24 @@ export default function Weather() {
       city: response.data.name,
     });
   }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+  function search() {
+    const apiKey = "27o0abe982dat860dde4ff04f45c83ea";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
-        <form>
+        <form onSumbit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
@@ -26,6 +46,7 @@ export default function Weather() {
                 placeholder="Enter a City........"
                 className="form-control"
                 autoFocus="on"
+                onChange={handleCityChange}
               />
             </div>
             <div className="col-3">
@@ -38,37 +59,12 @@ export default function Weather() {
           </div>
         </form>
 
-        <h2>New York </h2>
-        <ul>
-          <li>Wednesday 7</li>
-          <li>mostly stupid</li>{" "}
-        </ul>
-        <div className="row">
-          <div className="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="mostly cloudy"
-            />
-            <div className="float-left">
-              <span className="temperature">{Math.round(temperature)}</span>
-              <span className="unit">ºF</span>
-            </div>
-          </div>
-          <div className="col-6">
-            <ul>
-              <li>precip: 15%</li>
-              <li>humid: a lot</li>
-              <li>wind:100mph</li>
-            </ul>
-          </div>
-        </div>
+        <WeatherInfo data={weatherData} />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
-    const apiKey = "27o0abe982dat860dde4ff04f45c83ea";
-    let city = "New York";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
     return "Loading...";
   }
 }
