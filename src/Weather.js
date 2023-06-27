@@ -10,17 +10,10 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultcity);
 
   function handleResponse(response) {
-    console.log(response.data);
+
     setWeatherData({
       ready: true,
-      coordinates: response.data.coords,
-      date: new Date(response.data.dt * 1000),
-      temperature: response.data.main.temp,
-      iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2.png`,
-      humidity: response.data.main.humidity,
-      description: response.data.weather[0].description,
-      wind: response.data.main.wind.speed,
-      city: response.data.name,
+
     });
   }
   function handleSubmit(event) {
@@ -62,7 +55,7 @@ export default function Weather(props) {
         </form>
         <h2>{weatherData.city}</h2>
 
-        <FormattedDate date={props.data.date} />
+        <FormattedDate date={props} />
         <WeatherInfo data={weatherData} />
         <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
