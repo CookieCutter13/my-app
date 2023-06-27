@@ -1,27 +1,26 @@
 import React, { useState } from "react";
-import WeatherInfo from "./WeatherInfo";
-import FormattedDate from "./FormattedDate";
-import WeatherForecast from "./WeatherForecast";
+import WeatherInfo from "./WeatherInfo.js";
+import FormattedDate from "./FormattedDate.js";
+import WeatherForecast from "./WeatherForecast.js";
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultcity);
 
   function handleResponse(response) {
-   setWeatherData({
-     ready: true,
-     coordinates: response.data.coord,
-     temperature: response.data.main.temp,
-     humidity: response.data.main.humidity,
-     date: new Date(response.data.dt * 1000),
-     description: response.data.weather[0].description,
-     icon: response.data.weather[0].icon,
-     wind: response.data.wind.speed,
-     city: response.data.name,
-   });
-    console.log(setWeatherData);
+    setWeatherData({
+      ready: true,
+      coordinates: response.data.coord,
+      temperature: response.data.main,
+      humidity: response.data.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      city: response.data.name,
+    });
   }
   function handleSubmit(event) {
     event.preventDefault();
