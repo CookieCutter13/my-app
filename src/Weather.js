@@ -6,7 +6,7 @@ import "./Weather.css";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultcity);
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
@@ -31,9 +31,8 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
   function search(event) {
-     const apiKey = "2aec1d010905784662e2090e5e8d4d79";
-     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}
-  &appid=${apiKey}`;
+     const apiKey = "aa09763d916df0424c840d55bfc2d2c9";
+     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
      axios.get(apiUrl).then(handleResponse);
   }
 
