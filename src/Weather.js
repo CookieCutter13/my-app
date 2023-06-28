@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import WeatherInfo from "./WeatherInfo.js";
-import WeatherForecast from "./WeatherForecast.js";
-import WeatherIcon from "./WeatherIcon.js";
-import FormattedDate from "./FormattedDate.js";
+import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
 import "./Weather.css";
 
@@ -18,7 +16,6 @@ export default function Weather(props) {
       humidity: response.data.humidity,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_closy.png",
       wind: response.data.wind.speed,
       city: response.data.name,
     });
@@ -38,7 +35,10 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
   function search(event) {
-     event.preventDefault();
+     const apiKey = "2aec1d010905784662e2090e5e8d4d79";
+     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}
+  &appid=${apiKey}`;
+     axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -69,10 +69,8 @@ export default function Weather(props) {
       </div>
     );
   } else {
-  const apiKey = "2aec1d010905784662e2090e5e8d4d79";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}
-  &appid=${apiKey}`;
-  axios.get(apiUrl).then(handleResponse);
+search();
+return "Loading......";
 
 
   }
