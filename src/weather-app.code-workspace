@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "../../weather-app"
+	},
+	{
+		"path": "../public"
+	},
+	{
+		"path": "."
+	}
+],
+  "settings": {}
+}
